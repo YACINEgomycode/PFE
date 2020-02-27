@@ -1,0 +1,93 @@
+.modalInput{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+.modalInput select{
+    border-radius: 5px;
+    background: rgba(231, 229, 229, 0.4);;
+    border: solid 1px rgb(0, 110, 255);
+    color: #001f3f;
+    height: 40px;
+    width: 300px;
+}
+.inputItems{
+    border-radius: 5px;
+    background: rgba(231, 229, 229, 0.4);;
+    border: solid 1px rgb(0, 110, 255);
+    color: #001f3f;
+    height: 40px;
+    width: 300px;
+}
+.inputItemsareaa{
+    border-radius: 5px;
+    background: rgba(231, 229, 229, 0.4);;
+    border: solid 1px rgb(0, 110, 255);
+    color: #001f3f;
+    height: 120px;
+    width: 300px;
+}
+.modalexpertise input{
+    margin: 10px;
+}
+.calenderInputt{
+    border-radius: 5px;
+    background: rgba(231, 229, 229, 0.4);;
+    border: solid 1px rgb(0, 110, 255);
+    color: #001f3f;
+    height: 40px;
+    margin: 0px 10px;
+}
+.modalLabel{
+    font-weight: bold;
+}
+.notSelected {
+    display: none;
+  }
+  .selected {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .notSelectedVisa {
+    display: none;
+  }
+  .selectedVisa {
+    display: flex;
+    margin: 3px;
+    align-items: center;
+  }
+  .notSelectedVisa1 {
+    display: none;
+  }
+  .selectedVisa1 {
+    display: flex;
+    margin: 3px;
+    align-items: center;
+  }
+  .notSelectedVisa2 {
+    display: none;
+  }
+  .selectedVisa2 {
+    display: flex;
+    margin: 3px;
+    align-items: center;
+  }
+  .notSelectedVisa3 {
+    display: none;
+  }
+  .selectedVisa3 {
+    display: flex;
+    margin: 3px;
+    align-items: center;
+  }
+  
+.expire{
+    margin: 0px 10px
+}
+
+
+
+
+
