@@ -20,7 +20,18 @@ import Clients from './missions/Clients'
 import falconMissions from './missions/falconMissions'
 import "../App.css"
 import Addcertif from './ressources/Addcertif'
-import PrintPEng from './missions/printprofileng'
+import PrintPEng from './ressources/printprofileng'
+import Equipment from './equipment/Equipment'
+import { AddEquipment } from './equipment/Addequipment'
+import Article from './equipment/Article'
+import Inventaire from './equipment/Inventaire'
+import More from './equipment/More'
+import Edit from './equipment/Edit'
+import PrintBC from './equipment/PrintBC'
+import Use from './users/Use'
+import DropUser from './users/DropUser'
+import Transactions from './equipment/Transactions'
+import Tran from './equipment/Tran'
 
 
 
@@ -39,7 +50,16 @@ export default class Main extends Component {
                     
                         <Navbar/> 
                         <Switch>
-                       
+                        <Route exact path='/Tran' render={() => <Tran/>}/>
+                        <Route exact path='/Transactions' render={() => <Transactions/>}/>
+                        <Route exact path='/DropUser' render={() => <DropUser/>}/>
+                        <Route exact path='/Utilisateurs' render={() => <Use/>}/>
+                        <Route exact path="/Print/barcode/:id" render={(props) => <PrintBC id={props.match.params.id}/>} />
+                        <Route exact path="/edit/art/:id" render={(props) => <Edit id={props.match.params.id}/>} />
+                        <Route exact path='/Inventaire' render={() => <Inventaire/>}/>
+                        <Route exact path='/AddArticle' render={() => <Article/>}/>
+                        <Route exact path='/AddEquipment' render={() => <AddEquipment/>}/>
+                        <Route exact path='/EquipmentMenu' render={() => <Equipment/> }/>
                         <Route exact path='/' render={() => <ConnectJWT /> }/>
                         <Route exact path='/falconMissions' component={falconMissions}/>
                         <Route exact path='/cc' render={() => <Clients/>}/>

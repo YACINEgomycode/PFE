@@ -20,6 +20,14 @@ componentDidMount () {
     }))
     .catch(err =>console.log("err", err))
   }
+    // onPressDelete function that delete an expert
+    onDelete= (id)=> {
+        axios.delete("/missionsList/" + id).then(res => {  //
+                    this.setState({
+            Miss: this.state.Miss.filter(el => el._id !== id)
+          })
+        })
+        }   
     render() {
         return (
             <div>
@@ -29,8 +37,8 @@ componentDidMount () {
                </div>
                 </div>
             {this.state.Miss.map((el, i) =>{
-                    // pass data as a props to expertCard container
-                    return  <MissionCard key={i} data={el}  key={el._id}/>
+                    // pass data as a props to expertCard containe
+                    return  <MissionCard key={i} data={el}  key={el._id} onDelete={this.onDelete} />
                 })
             } 
             </div>

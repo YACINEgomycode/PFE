@@ -11,6 +11,11 @@ const ExpertiseSchema = new Schema({
         type: String,
         required: true
       },
+      value :{
+        type:String,
+        default:'N/A'
+        
+      }
       
 });
 

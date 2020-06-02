@@ -16,7 +16,7 @@ const UserSchema = new Schema({
   },
   permission:{
     type : Boolean,
-    required :false
+    
 
   
   }

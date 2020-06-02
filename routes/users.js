@@ -7,6 +7,7 @@ const config = require("config");
 const router = express.Router();
 const User = require("../models/User");
 
+const {MongoClient, ObjectID} = require('mongodb')
 
 
 router.get("/users", (req, res) => {
@@ -106,6 +107,28 @@ router.post("/login",(req, res) => {
     });
   });
 });
+
+
+router.put('/UserEdit/:id', (req, res) => {
+  let userId = ObjectID(req.params.id)
+  let updateduser = req.body
+
+  Articles.updateOne({_id : userId},{$set : { ...updateduser}}, (err, data)=>{
+      if (err) console.log(err)
+      else (res.send(data))
+  })
+  
+})
+
+router.delete('/DelUser/:id', (req, res) => {
+  let userId = ObjectID(req.params.id)
+  let updateduser = req.body
+  User.findOneAndDelete({_id : userId},{$set : { ...updateduser}}, (err, data)=>{
+      if (err) console.log(err)
+      else (res.send(data))
+  })
+})
+
 
 
 

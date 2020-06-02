@@ -10,6 +10,9 @@ const User = require("./models/User")
 const Client = require("./models/Client")
 const Certif = require("./models/Certif")
 const Expertise = require("./models/Expertise")
+const Equipment = require("./models/Equipment")
+const Transaction = require("./models/Transaction")
+
 
 var xss = require('xss-clean')
  
@@ -22,6 +25,7 @@ var cleaned = clean('<script></script>')
 
 
 //Body parser middleware
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
@@ -73,6 +77,7 @@ const dataBase = "FalconData"
             else (res.send(data))
         })
     })
+    
 
 
     // CRUD des missions
@@ -108,6 +113,7 @@ const dataBase = "FalconData"
             if (err) console.log(err)
             else (res.send(data))
         })
+        
     })
     app.delete('/missionsList/:id', (req, res) => {
         let missionId = ObjectID(req.params.id)
@@ -117,6 +123,8 @@ const dataBase = "FalconData"
             else (res.send(data))
         })
     })
+
+
 
     
 
@@ -139,7 +147,11 @@ require("./config/db")();
 app.use(require("./routes/users"));
 app.use(require("./routes/clients"));
 app.use(require("./routes/certif"));
-app.use(require("./routes/expertise"))
+app.use(require("./routes/expertise"));
+app.use(require("./routes/equipments"));
+app.use(require("./routes/article"));
+app.use(require("./routes/transaction"));
+
 
 
 
@@ -147,8 +159,8 @@ app.use(require("./routes/expertise"))
 const rateLimit = require("express-rate-limit");
 const limiter = rateLimit({
   windowMs:  60 * 60 * 1000, // 1 hour window
-  max:5000, // start blocking after 2000 requests
-  message: 'Too many requests' 
+  max:2000, // start blocking after 2000 requests
+  message: 'DOS attack detected !! ' 
 }); 
 //  apply to all requests
 

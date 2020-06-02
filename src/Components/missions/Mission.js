@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter,Input } from 'reactstrap';
 import axios from 'axios';
 import "./ordreMission.css"
 // modal class for adding new expert 
@@ -32,6 +32,8 @@ class ModalE extends React.Component {
         in:100,
         Max:[],
         Min:[],
+        Equ:[],
+        type:'',
        
         
 
@@ -65,9 +67,15 @@ class ModalE extends React.Component {
           num:[],
           num1:[],
           num2:[],
-          aa:""
+          
+          aa:"",
+          type: "",
+          
+          
     }));
   }
+ 
+
   // onChange get value from input
   onChange = (e) => {
     this.setState({
@@ -84,6 +92,11 @@ getall(){
 getclient(){
   axios.get('/clients').then(res=> this.setState({
     Min:res.data
+  }))
+}
+getEquipments(){
+  axios.get('/equipments').then(result=> this.setState({
+    Equ:result.data
   }))
 }
 
@@ -119,7 +132,9 @@ AddMission = () =>{
             logement:this.state.logement,
             demobilisation:this.state.demobilisation,      
             isChooseclient:this.state.isChooseclient,    
-            affaire:this.state.affaire      
+            affaire:this.state.affaire ,
+
+                
         })
       .then(res => axios.get("/missionsList"), 
       
@@ -127,29 +142,28 @@ AddMission = () =>{
       )
       .catch(err => alert(err));
  } }
+ componentDidMount(){
+   this.getEquipments();
+ }
 
 
+ SelectClassequ = e => {
   
+  var options = document.getElementById("exampleSelect1");
+  var id= options[options.selectedIndex].id;
+  var cl2= options[options.selectedIndex].value;
+  this.setState({
+    materiels: cl2,
+  })
+};
 
  classSelect = e => {
-  var year= new Date().getFullYear();
-  
-
-  
-  
-  
-  
-  
+  var year= new Date().getFullYear();  
   var options = document.getElementById("mySelect");
   var id= options[options.selectedIndex].id;
   var cl= options[options.selectedIndex].value;
-
   this.setState({
-    
     client: cl,
-    
-    
-    
   })
 };
 add(){
@@ -183,6 +197,7 @@ add(){
     this.toggle();
             this.getclient();
             this.getall();
+            this.getEquipments();
           }}>Créer Ordre de Mission</button>
         <Modal size='lg' isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}><h2>Ordre de Mission</h2></ModalHeader>
@@ -226,8 +241,19 @@ add(){
                <label className="modalLabel">Etendue</label>
                <input className="inputItems" name="etendue"type="text"   onChange={this.onChange} />
             <h2>Logistiques</h2>
-               <label className="modalLabel">Materiels recommandés</label>
-               <input className="inputItems" name="materiels"type="text"   onChange={this.onChange}/>
+            
+            <label for="exampleEmail" sm={2}>Materiels recommandés</label>
+                
+                <Input  type="select" className="inputItems" name="select" id="exampleSelect1"   onChange={()=>{this.SelectClassequ();}} >{"  "}
+                        <option hidden selected>Choisir un Type </option>
+                        {this.state.Equ.map((x,y) => 
+                        <option  id={x.equipmentCode} value={x.equipmentName}>{x.equipmentName}</option>)}
+                </Input>
+          
+               
+                
+               
+               
                <label className="modalLabel">lieu</label>
                <input className="inputItems" name="lieu"type="text"   onChange={this.onChange}/>
                <label className="modalLabel">Mobilisation</label>

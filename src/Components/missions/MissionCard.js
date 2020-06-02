@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import "./ordreMission.css"
 import {Link} from 'react-router-dom'
 import { Button } from 'reactstrap';
+import MissionDelete from './missionDelete' 
 
 export default class MissionCard extends Component {
     render() {
@@ -10,7 +11,8 @@ export default class MissionCard extends Component {
             <div className="MissionConatiner">
 
            <span className="missionDescription"> 
-               
+                
+
                <h4 className="descriptionTitle">Numéro d'ordre:<br/>{this.props.data.numOrdre}</h4>
             </span>
             <hr className="ligne"/>
@@ -22,7 +24,7 @@ export default class MissionCard extends Component {
                Date debut: {this.props.data.dateDebut}<br/>
                Date fin: {this.props.data.dateFin}<br/>
                Durée visite: {this.props.data.dureeVisite}<br/>
-               Qualficatons exigées : {this.props.data.qualificationExigees}
+              
             </span>
             <hr className="ligne"/>
             
@@ -44,21 +46,23 @@ export default class MissionCard extends Component {
                Lieu: {this.props.data.lieu}<br/>
                Mobilistaion: {this.props.data.mobilisation}<br/>
                Logement: {this.props.data.logement}<br/>
-               Démobisation: {this.props.data.demobilisation}<br/>
+              
             </span>
             </div>
-                
+            
             <div className="imprimer-ordre">
+           
             <Link to={`/ordre/${this.props.data._id}`}>
             <Button className="btn-ordre">Imprimer Ordre</Button>
                             </Link>
             <Link to={`/edit/missionsList/${this.props.data._id}`}>
             <Button className="btn-ordre" color="primary" >Modifier</Button>
                             </Link>
-           
+                            <MissionDelete onDelete={this.props.onDelete} id={this.props.data} />
             
             
             </div>
+            
             </div>
         )
     }

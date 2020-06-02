@@ -67,6 +67,7 @@ export class Addcertif extends Component {
       .then(res => axios.get("/expertise"), )
     .catch(err => alert(err));
   }
+ 
    
     
     

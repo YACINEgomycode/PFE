@@ -30,6 +30,13 @@ export default class Acceuil extends Component {
                          <button className="homeButton">Falcon Missions</button>
                          </Link>
                         
+                         <Link to='/EquipmentMenu'>
+                         <button className="homeButton">Falcon Equipments</button>
+                         </Link>
+                         <Link to='/Utilisateurs'>
+                         <button className="homeButton">Manage users</button>
+                         </Link>
+
                         
                          </div>
      

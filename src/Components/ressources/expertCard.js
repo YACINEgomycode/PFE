@@ -119,6 +119,7 @@ export default class ExpertCard extends Component {
                             </Link>
                             <ModalDeleteExpert onPressDelete={this.props.onPressDelete} id={this.props.expert}/>
                     </div>
+                    
                 </div>
             </div>
         )

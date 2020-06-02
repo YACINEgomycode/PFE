@@ -31,6 +31,11 @@ class EditGrille extends Component {
             InspecteurPipeline:'',
             InspecteurIncendie:'',
             isLoading: false,
+            newexperiences:[{
+                exps:'',
+                value:''
+            }],
+           
         }
     }
 // onChange get data from input 
@@ -39,6 +44,16 @@ class EditGrille extends Component {
           [e.target.name]: e.target.value
         });
       };
+
+      classSelect = e => {
+       
+        var options = document.getElementById("Select");
+        var cl= options[options.selectedIndex].value;
+        this.setState({
+            [e.target.name]: cl
+        })
+      };
+      
 // componentDidMount get data from database
       componentDidMount () {
         axios.get("/expertsList/" + this.props.id ).then(res => this.setState({
@@ -66,6 +81,7 @@ class EditGrille extends Component {
                 InspecteurStorageTank: this.state.InspecteurStorageTank,
                 InspecteurPipeline: this.state.InspecteurPipeline,
                 InspecteurIncendie: this.state.InspecteurIncendie,
+                newexperiences:this.state.newexperiences,
             })
             // button animation 
             this.setState({ isLoading: true})
@@ -130,7 +146,7 @@ class EditGrille extends Component {
                 <div className="editGrilleItem">
                     <label>Inspecteur NDT VT</label>
                     <select name="InspecteurNDTVT" onChange={this.onChange} value={this.state.InspecteurNDTVT}>
-                        <option value="N/A">N/A</option>
+                        <option  value="N/A">N/A</option>
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -283,6 +299,10 @@ class EditGrille extends Component {
                         <option value="5">5</option>
                     </select>
                 </div>
+                
+
+
+
                 <div className="editGrilleItem">
                     <label>Inspecteur incendie</label>
                     <select name="InspecteurIncendie" onChange={this.onChange} value={this.state.InspecteurIncendie}>
@@ -295,6 +315,25 @@ class EditGrille extends Component {
                         <option value="5">5</option>
                     </select>
                 </div>
+       
+       {this.state.newexperiences.map((el)=>{return(
+            <div className="editGrilleItem"><label name={el.exps}>{el.exps}</label>
+             <select  id="Select"  onChange={this.onChange}>
+                        <option value="N/A">N/A</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+            
+            
+            </div>
+       )})}
+
+
+
 
                 <div style={{margin:'10px'}}>
                     <Link  to='/grille_de_comp'>

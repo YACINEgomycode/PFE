@@ -1,48 +1,42 @@
 const express = require("express");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const passport = require("passport");
 
 const config = require("config");
 const router = express.Router();
-const Expertise = require("../models/Expertise");
+const Equipments = require("../models/Equipment");
 
 
 
-router.get("/expertise", (req, res) => {
-  Expertise.find().then(expertise => res.send(expertise))
+router.get("/equipments", (req, res) => {
+  Equipment.find().sort( { equipmentName: 1 } ).then(equipment => res.send(equipment))
 });
 
 
 
-router.put('/expertise/:id', (req, res) => {
-  let expertiseId = ObjectID(req.params.id) 
-  let updatedExpertise = req.body
-  db.collection('experts').updateOne({_id : expertiseId},{$set : { ...updatedExpertise}}, (err, data)=>{
-      if (err) console.log(err)
-      else (res.send(data))
-  })
-})
 
-router.post("/addExpertise", (req, res) => {
-    const exps = req.body.exps;
-    const value =req.body.value;
-   
+
+router.post("/addEquipment", (req, res) => {
+    const equipmentName = req.body.equipmentName;
+    const equipmentCode = req.body.equipmentCode;
     
     
    
-      const newExpertise = new Expertise({
-       exps: exps,
-       value:value,
+      const newEquipment = new Equipment({
+        equipmentName: equipmentName,
+        equipmentCode:  equipmentCode,
         
       });
   
      
-          newExpertise
+          newEquipment
             .save((err,) => {
                 if (err) {
                     return (err);
                 }
         
-                res.status(200).send("expertise inserer");
+                res.status(200).send("equipement inserer");
             });
            
             
@@ -60,7 +54,7 @@ router.get(
     session: false
   }),
   (req, res) => {
-    res.json(req.expertise);
+    res.json(req.equipment);
   }
 );
 

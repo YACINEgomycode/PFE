@@ -196,16 +196,7 @@ onEditPress = () => {
                     value={this.state.dureeVisite}
                   />
                   </div><br />
-                  <div className='editItem'>
-                  <label >Qualifications Exigées:</label>
-                  <input
-                    className="editInput" 
-                    type="text"
-                    name="qualificationExigees"
-                    onChange={this.onChange}
-                    value={this.state.qualificationExigees}
-                  />
-                  </div><br />
+                 
                   <h1 >Détails du projet</h1>
                   <div className='editItem'>
                   <label >Lieu mission:</label>
@@ -280,16 +271,7 @@ onEditPress = () => {
                     value={this.state.logement}
                   />
                   </div><br />
-                  <div className='editItem'>
-                  <label >Démobilistaion:</label>
-                  <input
-                    className="editInput" 
-                    type="text"
-                    name="demobilisation"
-                    onChange={this.onChange}
-                    value={this.state.demobilisation}
-                  />
-                  </div><br />
+                
                   </div>
       
                     <Button color="primary"  style={{margin:'10px'}} onClick={()=> {this.onEditPress(); }}>

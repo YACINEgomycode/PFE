@@ -11,7 +11,8 @@ class Grille extends Component {
     constructor (props){
         super(props);
         this.state={
-            profile:[], // initial variable to put extracting data from database named FalconData from collection named experts
+            profile:[], 
+            array:[],// initial variable to put extracting data from database named FalconData from collection named experts
 
             // initial all values of expert expertise to N/A
             InspecteurNDTMT:'N/A',
@@ -34,15 +35,29 @@ class Grille extends Component {
             InspecteurIncendie:'N/A',
         }
     }
+
+    getexpertises(){
+        axios.get('/expertise').then(resss=> this.setState({
+          array:resss.data,
+         
+    
+        }))
+    
+      }
     // componentDidMount get data from database
     componentDidMount () {
+        this.getexpertises();
         axios
         .get("./expertsList")
         .then(res => this.setState({
             profile : res.data  // get all data from data base named FalconData from collection named experts
         }))
-        .catch(err =>console.log("err", err)) // if there is an error will be catched just open the console 
+        .catch(err =>console.log("err", err));
+         // if there is an error will be catched just open the console 
+         
     }
+   
+   
     
     render() {
         return (
@@ -64,9 +79,11 @@ class Grille extends Component {
                                                 <Button color="primary" >Modifier</Button>
                                             </Link>
                                         </th>
+                                        
                             )})}
                         </tr>
                     </thead>
+                   
                     <tbody>
                         <tr>
                             <td>Inspecteur NDT MT</td>
@@ -187,8 +204,42 @@ class Grille extends Component {
                                 <td>{el.InspecteurIncendie}</td>
                             )})}
                             </tr>
+
+
+                         
+<tr>
+                            
+{this.state.array.map((el)=>{return(<tr><td>{el.exps}</td></tr>)})}
+
+{this.state.profile.map((ell)=>{
+return(<tr className="tryy">
+    {ell.newexperiences.map((x)=>{return (<td className="try">{x.value}</td>)})}
+     </tr>)
+
+
+})}
+    
+
+
+  
+
+                        
+                             
+                           
+
+    </tr>                    
+                                  
+
+
+                           
+                                
+                        
                         
                     </tbody>
+                              
+                                
+                               
+                    
                 </table>
 
 

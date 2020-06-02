@@ -314,6 +314,8 @@ class ModalExample extends React.Component {
     // clear state 
     this.setState(prevState => ({
       modal: !prevState.modal,
+      allexpertise:[],
+     
       name: "",
       lastname: "",
       phone: "",
@@ -329,6 +331,7 @@ class ModalExample extends React.Component {
       experience:"",
       dateDebut:'',
       dateFin:'',
+      newex:[],
       expertiseArr:[
         {
           id: 1,
@@ -584,6 +587,12 @@ NewCertif(index,e){
     console.log('data',this.state.arr)
   
 }
+allexpertise(i,e){
+  let newexps = this.state.array.slice();
+  this.setState({
+    allexpertise:newexps
+  })
+}
 NewExpertise(i,e){
  
   let newexps = this.state.array.slice();
@@ -675,6 +684,7 @@ visaToggle1(index, e) {
         dateDebut:this.state.dateDebut,
         dateFin: this.state.dateFin,
         expertiseArr: this.state.expertiseArr.concat( this.state.choosenExpertise),
+        
         certfiArr: this.state.certfiArr.concat( this.state.choosencertifs),
         visas:this.state.visas,
         InspecteurNDTMT:'N/A',
@@ -698,7 +708,9 @@ visaToggle1(index, e) {
         isChooseVisa: this.state.isChooseVisa,
         isChooseCarteSud: this.state.isChooseCarteSud,
         isChooseAptmedic: this.state.isChooseAptmedic,
-        presentation:this.state.presentation
+        presentation:this.state.presentation,
+        newexperiences:this.state.array,
+        
         })
       .then(res => axios.get("/expertsList") 
       //.then(res => this.props.updateExpertList(res.data))
@@ -714,7 +726,9 @@ visaToggle1(index, e) {
 
   getexpertises(){
     axios.get('/expertise').then(res=> this.setState({
-      array:res.data
+      array:res.data,
+     
+
     }))
 
   }
@@ -897,7 +911,7 @@ visaToggle1(index, e) {
           <ModalFooter>
     <Button 
           disabled={this.state.isLoading} color="primary" 
-          onClick={()=> {this.onAddExpert(); }}
+          onClick={()=> {this.onAddExpert();this.allexpertise() }}
           >
         { !this.state.isLoading &&  <span> Ajouter un expert</span>}
         { this.state.isLoading &&  <span><i className="fas fa-circle-notch fa-spin"></i> Ajouter un expert</span>}
