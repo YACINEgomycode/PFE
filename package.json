@@ -19,7 +19,7 @@
     "@progress/kendo-react-popup": "3.11.0",
     "@progress/kendo-react-scheduler": "3.11.0",
     "@react-pdf/renderer": "^1.6.7",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "bcrypt": "^3.0.8",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.4.1",
